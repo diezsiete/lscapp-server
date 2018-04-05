@@ -9,24 +9,29 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends Controller
 {
     /**
-     * @Route("/video")
+     * @Route("/video", name="video_all")
      */
     public function videoAll()
     {
-        return new Response('Retorna todos los videos');
+        $videos = [];
+
+        return new JsonResponse(["videos" => $videos]);
     }
 
     /**
-     * @Route("/video/{id}")
+     * @Route("/video/{id}", name="video_one", methods={"GET"})
      */
     public function videoOne($id)
     {
-        return new Response('Retorna un video ' . $id);
+        $video = "";
+        return new JsonResponse(["video" => $video]);
     }
 }
